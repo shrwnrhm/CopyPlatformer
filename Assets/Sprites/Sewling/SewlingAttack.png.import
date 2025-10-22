@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb43qyrkmqr3k"
-path="res://.godot/imported/SewlingWalking.png-8da9d6dfda3acd3f70c2a213de95eaf0.ctex"
+uid="uid://egp3jvngg417"
+path="res://.godot/imported/SewlingAttack.png-20a308cde3e6da401ea72fb718991eea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PlayerSewling/SewlingWalking.png"
-dest_files=["res://.godot/imported/SewlingWalking.png-8da9d6dfda3acd3f70c2a213de95eaf0.ctex"]
+source_file="res://Assets/Sprites/Sewling/SewlingAttack.png"
+dest_files=["res://.godot/imported/SewlingAttack.png-20a308cde3e6da401ea72fb718991eea.ctex"]
 
 [params]
 

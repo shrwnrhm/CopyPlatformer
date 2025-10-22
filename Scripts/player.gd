@@ -15,12 +15,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var input_dir = Input.get_axis("move_left","move_right")
 	
-	# Use animation depending on the input
+	# Left/Right orientation of the sprite
 	if input_dir > 0:
 		$AnimatedSprite2D.flip_h = false
-		$AnimatedSprite2D.play("run")
 	elif input_dir < 0:
 		$AnimatedSprite2D.flip_h = true
+	
+	# Use animation depending on the input
+	if not is_on_floor():
+		if velocity.y < 0:
+			$AnimatedSprite2D.play("falling")	
+	elif input_dir != 0:
 		$AnimatedSprite2D.play("run")
 	else:
 		$AnimatedSprite2D.play("idle")

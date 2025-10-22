@@ -1,28 +1,29 @@
-[gd_scene load_steps=26 format=3 uid="uid://un0y14wnyj4r"]
+[gd_scene load_steps=15 format=3 uid="uid://un0y14wnyj4r"]
 
-[ext_resource type="Texture2D" uid="uid://dghri80rt60b0" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle01.png" id="1_2ijsl"]
 [ext_resource type="Script" uid="uid://e11lp5t3cbw8" path="res://Scripts/player.gd" id="1_p1odr"]
-[ext_resource type="Texture2D" uid="uid://i1q2t0t8vp7r" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle02.png" id="2_p1odr"]
-[ext_resource type="Texture2D" uid="uid://bpv44ltsyof0h" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle03.png" id="3_0gysh"]
-[ext_resource type="Texture2D" uid="uid://u2ejvy37dkkj" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle04.png" id="4_vfarp"]
-[ext_resource type="Texture2D" uid="uid://c5a0hr7n3mbrl" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle05.png" id="5_y6uwr"]
-[ext_resource type="Texture2D" uid="uid://8ep2gp1u8ksc" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle06.png" id="6_83xs0"]
-[ext_resource type="Texture2D" uid="uid://cxye6g8hn4do0" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle07.png" id="7_ypfnu"]
-[ext_resource type="Texture2D" uid="uid://q0aedp5xhfno" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle08.png" id="8_xuaoq"]
-[ext_resource type="Texture2D" uid="uid://dphqugs51hr0l" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/idle09.png" id="9_wohnl"]
-[ext_resource type="Texture2D" uid="uid://d1qld8pg8qgos" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/jump_landing.png" id="10_36dho"]
-[ext_resource type="Texture2D" uid="uid://bb5ggu6a8eem6" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/jump_mid01.png" id="11_yh6i2"]
-[ext_resource type="Texture2D" uid="uid://bkygumvu6twoe" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/jump_mid02.png" id="12_nv4vc"]
-[ext_resource type="Texture2D" uid="uid://cbl8yc5vjy5vi" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/jump_mid03.png" id="13_8gxox"]
-[ext_resource type="Texture2D" uid="uid://dangxqvqiky13" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/jump_mid04.png" id="14_11gg7"]
-[ext_resource type="Texture2D" uid="uid://dm8l2jp25dqfp" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/jump_start01.png" id="15_qpa8y"]
-[ext_resource type="Texture2D" uid="uid://cwg6gpxum2i42" path="res://Assets/Sprites/Gino Character/PNG/Idle, run, jump/jump_start02.png" id="16_sbwqj"]
-[ext_resource type="Texture2D" uid="uid://bb43qyrkmqr3k" path="res://Assets/Sprites/PlayerSewling/SewlingWalking.png" id="18_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://btdbkl45o5mxl" path="res://Assets/Sprites/Sewling/SewlingJumping.png" id="2_vgqql"]
+[ext_resource type="Texture2D" uid="uid://bb43qyrkmqr3k" path="res://Assets/Sprites/Sewling/SewlingWalking.png" id="18_fs7ks"]
 [ext_resource type="Script" uid="uid://ccrm82p87gn42" path="res://Scripts/gravity_controller.gd" id="26_0gysh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5x828"]
 radius = 7.0
 height = 46.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("2_vgqql")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
+atlas = ExtResource("2_vgqql")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("2_vgqql")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
+atlas = ExtResource("2_vgqql")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
 atlas = ExtResource("18_fs7ks")
@@ -43,60 +44,35 @@ region = Rect2(192, 0, 64, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_8eeqe"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_2ijsl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_p1odr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_0gysh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_vfarp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_y6uwr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_83xs0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_ypfnu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_xuaoq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_wohnl")
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_8erm5")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"falling",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_36dho")
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_fkybt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_yh6i2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_nv4vc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_8gxox")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_11gg7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_qpa8y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_sbwqj")
+"texture": SubResource("AtlasTexture_x3wgy")
 }],
 "loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkybt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_3smsa")
+}],
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -126,8 +102,9 @@ metadata/_edit_group_ = true
 shape = SubResource("CapsuleShape2D_5x828")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_8eeqe")
-animation = &"run"
+animation = &"falling"
 offset = Vector2(2, -9)
 
 [node name="GravityController" type="Node2D" parent="."]
