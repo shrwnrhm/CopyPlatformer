@@ -1,13 +1,31 @@
-[gd_scene load_steps=15 format=3 uid="uid://un0y14wnyj4r"]
+[gd_scene load_steps=24 format=3 uid="uid://un0y14wnyj4r"]
 
 [ext_resource type="Script" uid="uid://e11lp5t3cbw8" path="res://Scripts/player.gd" id="1_p1odr"]
 [ext_resource type="Texture2D" uid="uid://btdbkl45o5mxl" path="res://Assets/Sprites/Sewling/SewlingJumping.png" id="2_vgqql"]
+[ext_resource type="Texture2D" uid="uid://egp3jvngg417" path="res://Assets/Sprites/Sewling/SewlingAttack.png" id="2_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://gb3y0ln1m7t3" path="res://Assets/Sprites/Sewling/SewlingSpecial.png" id="5_3smsa"]
 [ext_resource type="Texture2D" uid="uid://bb43qyrkmqr3k" path="res://Assets/Sprites/Sewling/SewlingWalking.png" id="18_fs7ks"]
 [ext_resource type="Script" uid="uid://ccrm82p87gn42" path="res://Scripts/gravity_controller.gd" id="26_0gysh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5x828"]
 radius = 7.0
 height = 46.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("2_x3wgy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("2_x3wgy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("2_x3wgy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("2_x3wgy")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
 atlas = ExtResource("2_vgqql")
@@ -41,15 +59,44 @@ region = Rect2(128, 0, 64, 64)
 atlas = ExtResource("18_fs7ks")
 region = Rect2(192, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
+atlas = ExtResource("5_3smsa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
+atlas = ExtResource("5_3smsa")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
+atlas = ExtResource("5_3smsa")
+region = Rect2(64, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_8eeqe"]
 animations = [{
 "frames": [{
-"duration": 4.0,
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8erm5")
 }],
 "loop": true,
 "name": &"falling",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 3.0,
@@ -63,18 +110,12 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fkybt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x3wgy")
-}, {
-"duration": 4.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_3smsa")
 }],
 "loop": false,
 "name": &"jump",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -92,6 +133,20 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukyrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dp3o")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_h4iuc")
+}],
+"loop": false,
+"name": &"special",
+"speed": 10.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -103,9 +158,12 @@ shape = SubResource("CapsuleShape2D_5x828")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_8eeqe")
-animation = &"falling"
+animation = &"special"
 offset = Vector2(2, -9)
 
 [node name="GravityController" type="Node2D" parent="."]
 script = ExtResource("26_0gysh")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
