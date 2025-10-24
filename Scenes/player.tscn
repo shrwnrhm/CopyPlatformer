@@ -113,7 +113,7 @@ animations = [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_3smsa")
 }],
-"loop": false,
+"loop": true,
 "name": &"jump",
 "speed": 1.0
 }, {
@@ -160,7 +160,7 @@ shape = SubResource("CapsuleShape2D_5x828")
 texture_filter = 1
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_8eeqe")
-animation = &"special"
+animation = &"attack"
 offset = Vector2(2, -9)
 
 [node name="GravityController" type="Node2D" parent="."]

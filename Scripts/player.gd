@@ -5,11 +5,15 @@ extends CharacterBody2D
 #var velocity: Vector2 = Vector2.ZERO
 
 @export var jump_strength: float = 800.0
+@export var special_dash_speed: float = 800
 @export var gravity_strength: float = 2000.0
 
 @onready var is_jumping = false # unused so far
 @onready var is_attacking = false
 @onready var is_specialing = false
+
+@onready var facing: int = 1
+@onready var facing_locked: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,8 +30,17 @@ func _physics_process(delta: float) -> void:
 	var input_attack = Input.is_action_pressed("attack")
 	var input_special = Input.is_action_pressed("special")
 	
-	# Apply input movement
+	if not facing_locked:
+		if input_dir > 0:
+			facing = 1
+		elif input_dir < 0:
+			facing = -1
+
+	# Apply input movement, don't apply if special is being used
 	velocity.x = input_dir * speed
+	
+	if is_specialing:
+		velocity.x = facing * special_dash_speed
 	
 	# Apply jumping and gravity
 	if is_on_floor():
@@ -42,15 +55,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# Left/Right orientation of the sprite
-	if input_dir > 0:
+	if facing > 0:
 		$AnimatedSprite2D.flip_h = false
-	elif input_dir < 0:
+	elif facing < 0:
 		$AnimatedSprite2D.flip_h = true
 	
 	# Start or keep animation
 	if not is_attacking and not is_specialing:
 		if input_special:
 			is_specialing = true
+			facing_locked = true
 			$AnimatedSprite2D.play("special")
 		elif input_attack:
 			is_attacking = true
@@ -68,4 +82,5 @@ func _physics_process(delta: float) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	is_attacking = false
 	is_specialing = false
+	facing_locked = false
 	print("Animation finished!")
