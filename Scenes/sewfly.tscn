@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://bscyojs2v21h2"]
+
+[ext_resource type="Script" uid="uid://ymy8bmv3we7a" path="res://Scripts/sewfly.gd" id="1_syu1c"]
+[ext_resource type="Texture2D" uid="uid://j4ryqjj1k65o" path="res://Assets/Sprites/SewFly/SewFlyAttack.png" id="2_s88ri"]
+[ext_resource type="Texture2D" uid="uid://luec3ex6y4op" path="res://Assets/Sprites/SewFly/SewFlyIdle.png" id="3_1h4os"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dexq"]
+atlas = ExtResource("2_s88ri")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq30u"]
+atlas = ExtResource("2_s88ri")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv5pb"]
+atlas = ExtResource("2_s88ri")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6djq"]
+atlas = ExtResource("3_1h4os")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50atl"]
+atlas = ExtResource("3_1h4os")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bxll"]
+atlas = ExtResource("3_1h4os")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gxgie"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dexq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq30u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv5pb")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6djq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50atl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bxll")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umbdo"]
+radius = 12.0
+height = 26.0
+
+[node name="Swefly" type="CharacterBody2D"]
+script = ExtResource("1_syu1c")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_gxgie")
+animation = &"attack"
+offset = Vector2(4, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_umbdo")

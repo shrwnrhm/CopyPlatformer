@@ -7,10 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bb43qyrkmqr3k" path="res://Assets/Sprites/Sewling/SewlingWalking.png" id="18_fs7ks"]
 [ext_resource type="Script" uid="uid://ccrm82p87gn42" path="res://Scripts/gravity_controller.gd" id="26_0gysh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5x828"]
-radius = 7.0
-height = 46.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
 atlas = ExtResource("2_x3wgy")
 region = Rect2(0, 0, 64, 64)
@@ -149,19 +145,23 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5x828"]
+radius = 7.0
+height = 46.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_p1odr")
 metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_5x828")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_8eeqe")
-animation = &"attack"
+animation = &"special"
 offset = Vector2(2, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5x828")
 
 [node name="GravityController" type="Node2D" parent="."]
 script = ExtResource("26_0gysh")

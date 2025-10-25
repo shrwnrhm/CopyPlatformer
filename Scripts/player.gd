@@ -49,7 +49,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.y = 0
 	else:
-		velocity.y += gravity_strength * delta
+		velocity += get_gravity() * delta
+		#velocity.y += gravity_strength * delta
 
 	# Change the position
 	move_and_slide()
@@ -83,4 +84,3 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_attacking = false
 	is_specialing = false
 	facing_locked = false
-	print("Animation finished!")

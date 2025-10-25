@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://b1gk486ddtrj5"]
+[gd_scene load_steps=7 format=4 uid="uid://b1gk486ddtrj5"]
 
 [ext_resource type="Texture2D" uid="uid://cxcntxhts0dsb" path="res://Assets/Tiles/TestTileSet.png" id="1_r5l72"]
 [ext_resource type="PackedScene" uid="uid://un0y14wnyj4r" path="res://Scenes/player.tscn" id="2_50ct6"]
 [ext_resource type="Script" uid="uid://cpxr0qldmn05b" path="res://Scripts/main_camera.gd" id="3_50ct6"]
+[ext_resource type="PackedScene" uid="uid://bscyojs2v21h2" path="res://Scenes/sewfly.tscn" id="4_hb2xm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hb2xm"]
 texture = ExtResource("1_r5l72")
@@ -447,3 +448,12 @@ position = Vector2(1, 56)
 zoom = Vector2(2, 2)
 script = ExtResource("3_50ct6")
 target = NodePath("../Player")
+
+[node name="Node2D" parent="." instance=ExtResource("4_hb2xm")]
+position = Vector2(249, 50)
+
+[node name="Node2D2" parent="." instance=ExtResource("4_hb2xm")]
+position = Vector2(251, -126)
+
+[node name="Node2D3" parent="." instance=ExtResource("4_hb2xm")]
+position = Vector2(-255, -130)
