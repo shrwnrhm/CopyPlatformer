@@ -104,7 +104,11 @@ Concrete
 Acid
 
 ## Terminology
-
+Entity: Objects that can be interacted with
+Characters: Entities with health and that can perform actions
+Species: A category of Characters that share base stats and behaviours
+Enemy: An instance of a Species
+Player: The primary Character controlled by the User
 
 ## Unlock Characters
 Unlock at 100

@@ -39,4 +39,4 @@ func should_attack() -> bool:
 	return distance < 100
 	
 func should_special() -> bool:
-	return direction.y < 0.1
+	return direction.y < 0.05
