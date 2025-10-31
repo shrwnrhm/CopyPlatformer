@@ -26,11 +26,14 @@ signal death
 @onready var facing_locked: bool = false
 
 @onready var controller = $AIController
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+# controller variables
+@onready var should_special: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimationPlayer.animation_finished.connect(_on_animation_player_animation_finished)
+	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,10 +43,11 @@ func _process(delta: float) -> void:
 	#var direction: Vector2 = controller.get_direction()
 	var horizontal_direction: float = controller.get_horizontal_direction()
 	#var should_jump: bool = controller.should_jump()
-	var should_attack: bool = controller.should_attack()
-	var should_special: bool = controller.should_special()
+	#var should_attack: bool = controller.should_attack()
+	should_special = controller.should_special()
 	
 	apply_movement(delta)
+	apply_post_movement(delta)
 
 	# Apply sprite facing direction
 	if not facing_locked:
@@ -57,7 +61,7 @@ func _process(delta: float) -> void:
 
 	# Kill the character if it falls too far down # TODO: find a better way to do this
 	if position.y > 1000:
-		take_damage(max_health)
+		take_damage(delta * max_health / 10)
 		
 	# Apply Left/Right orientation of the sprite
 	if facing > 0:
@@ -65,6 +69,7 @@ func _process(delta: float) -> void:
 	elif facing < 0:
 		$AnimatedSprite2D.flip_h = true
 		
+	apply_pre_state_change(delta)	
 	apply_state_change()
 
 
@@ -87,32 +92,36 @@ func apply_movement(delta: float) -> void:
 		else:
 			velocity.y += get_gravity().y * delta
 
+func apply_post_movement(delta: float) -> void:
+	pass
+
+func apply_pre_state_change(delta: float) -> void:
+	pass
 
 func apply_state_change() -> void:
 	var horizontal_direction: float = controller.get_horizontal_direction()
 	#var should_jump: bool = controller.should_jump()
 	var should_attack: bool = controller.should_attack()
-	var should_special: bool = controller.should_special()
 
 	# Change state if allowed
 	if not attacking and not specialing:
-		if should_special and $AnimationPlayer.has_animation("special"):
+		if should_special and animation_player.has_animation(&"special"):
 			specialing = true
 			facing_locked = true
-			$AnimationPlayer.play("special")
-		elif should_attack and $AnimationPlayer.has_animation("attack"):
+			animation_player.play(&"special")
+		elif should_attack and animation_player.has_animation(&"attack"):
 			attacking = true
 			#facing_locked = true
-			$AnimationPlayer.play("attack")
+			animation_player.play(&"attack")
 		elif is_on_floor() or flying:
-			if horizontal_direction != 0 and $AnimationPlayer.has_animation("run"):
-				$AnimationPlayer.play("run")
+			if horizontal_direction != 0 and animation_player.has_animation(&"run"):
+				animation_player.play(&"run")
 			else:
-				$AnimationPlayer.play("idle")
-		elif velocity.y > 0 and $AnimationPlayer.has_animation("fall"):
-			$AnimationPlayer.play("fall")
+				animation_player.play(&"idle")
+		elif velocity.y > 0 and animation_player.has_animation(&"fall"):
+			animation_player.play(&"fall")
 		else:
-			$AnimationPlayer.play("jump")
+			animation_player.play(&"jump")
 
 
 func take_damage(damage: float):
@@ -125,6 +134,9 @@ func take_damage(damage: float):
 
 # When an animation finishes, return to base state
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	animation_player.play(&"RESET")
+	animation_player.advance(0)
+	
 	facing_locked = false
 	if anim_name == "attack":
 		attacking = false

@@ -65,7 +65,6 @@ func switch_to_slot(slot_id: int) -> void:
 	current_slot_id = slot_id
 
 func on_damaged():
-	print("Player took damage!")
 	emit_signal("damaged")
 	
 func on_death():
