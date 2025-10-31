@@ -1,7 +1,7 @@
 extends Camera2D
 
 # Path to the player node in the scene
-@export var target: Node2D # adjust to your scene tree
+@export var target: Player # adjust to your scene tree
 
 # Smoothing factor. Larger values resu  lt in faster following.
 @export var follow_speed: float = 750.0
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 		return
 
 	# Desired position is the player's position plus an offset
-	var desired_position: Vector2 = target.global_position + offset
+	var desired_position: Vector2 = target.get_player_position() + offset
 
 	# Move the camera gradually towards the targets position
 	position = position.move_toward(desired_position, follow_speed * delta)

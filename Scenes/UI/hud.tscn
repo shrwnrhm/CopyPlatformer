@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c53y5nnlrjbox"]
+
+[ext_resource type="Script" uid="uid://b3kthx6sfl2ws" path="res://Scripts/UI/hud.gd" id="1_sprlj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sprlj"]
+bg_color = Color(0.61960787, 0.011764706, 0.11372549, 0.23921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny26j"]
+bg_color = Color(0.6180618, 0.012507485, 0.11416065, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sprlj")
+metadata/_edit_group_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_sprlj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ny26j")
+max_value = 1.0

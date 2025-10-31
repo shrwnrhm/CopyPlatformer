@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bscyojs2v21h2"]
+[gd_scene load_steps=21 format=3 uid="uid://bscyojs2v21h2"]
 
 [ext_resource type="Script" uid="uid://ymy8bmv3we7a" path="res://Scripts/sewfly.gd" id="1_syu1c"]
 [ext_resource type="Texture2D" uid="uid://j4ryqjj1k65o" path="res://Assets/Sprites/SewFly/SewFlyAttack.png" id="2_s88ri"]
 [ext_resource type="Texture2D" uid="uid://luec3ex6y4op" path="res://Assets/Sprites/SewFly/SewFlyIdle.png" id="3_1h4os"]
+[ext_resource type="Script" uid="uid://bhb7ecddpslrb" path="res://Scripts/hitbox.gd" id="4_s88ri"]
+[ext_resource type="Script" uid="uid://bpncroaeylj3w" path="res://Scripts/hurtbox.gd" id="5_1h4os"]
+[ext_resource type="PackedScene" uid="uid://bvj3olio2jg8f" path="res://Scenes/ai_controller.tscn" id="6_4dexq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dexq"]
 atlas = ExtResource("2_s88ri")
@@ -60,12 +63,155 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umbdo"]
-radius = 12.0
-height = 26.0
+radius = 15.0
 
-[node name="Swefly" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_syu1c"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dexq"]
+radius = 12.0
+
+[sub_resource type="Animation" id="Animation_4dexq"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-2, 13), Vector2(3, 6), Vector2(-13, 17), Vector2(-2, 13)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yv5pb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 13)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dq30u"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6djq"]
+_data = {
+&"RESET": SubResource("Animation_yv5pb"),
+&"attack": SubResource("Animation_4dexq"),
+&"idle": SubResource("Animation_dq30u")
+}
+
+[node name="Sewfly" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_syu1c")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -75,3 +221,31 @@ offset = Vector2(4, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_umbdo")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_s88ri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2, 13)
+shape = SubResource("CircleShape2D_syu1c")
+debug_color = Color(0.99830955, 0, 0.15655428, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("5_1h4os")
+metadata/_custom_type_script = "uid://bpncroaeylj3w"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_4dexq")
+debug_color = Color(0, 0.6510982, 0.06678377, 0.41960785)
+
+[node name="AIController" parent="." instance=ExtResource("6_4dexq")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c6djq")
+}
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hurt_zone_area_entered"]
