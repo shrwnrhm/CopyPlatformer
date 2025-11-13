@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://u044fw1km80r" path="res://Scripts/scene.gd" id="1_x033f"]
 [ext_resource type="PackedScene" uid="uid://un0y14wnyj4r" path="res://Scenes/player.tscn" id="2_50ct6"]
 [ext_resource type="Script" uid="uid://cpxr0qldmn05b" path="res://Scripts/main_camera.gd" id="3_50ct6"]
-[ext_resource type="PackedScene" uid="uid://bscyojs2v21h2" path="res://Scenes/sewfly.tscn" id="4_hb2xm"]
+[ext_resource type="PackedScene" uid="uid://bscyojs2v21h2" path="res://Scenes/Characters/sewfly.tscn" id="4_hb2xm"]
 [ext_resource type="PackedScene" uid="uid://b5axh2jcjse2n" path="res://Scenes/UI/game_over_menu.tscn" id="5_ak5v8"]
+[ext_resource type="PackedScene" uid="uid://b6vo1s0mgkmwt" path="res://Scenes/Characters/sewling.tscn" id="6_oho3u"]
 [ext_resource type="PackedScene" uid="uid://c53y5nnlrjbox" path="res://Scenes/UI/hud.tscn" id="6_rdbpf"]
-[ext_resource type="PackedScene" uid="uid://b6vo1s0mgkmwt" path="res://Scenes/sewling.tscn" id="8_oho3u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hb2xm"]
 texture = ExtResource("1_r5l72")
@@ -496,6 +496,9 @@ target = NodePath("../Player")
 [node name="Sewfly" parent="." instance=ExtResource("4_hb2xm")]
 position = Vector2(242, 43)
 
+[node name="Sewling" parent="." instance=ExtResource("6_oho3u")]
+position = Vector2(252, -106)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -504,8 +507,5 @@ player = NodePath("../../Player")
 
 [node name="GameOverMenu" parent="CanvasLayer" instance=ExtResource("5_ak5v8")]
 visible = false
-
-[node name="Sewling" parent="." instance=ExtResource("8_oho3u")]
-position = Vector2(248, -96)
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]

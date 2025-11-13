@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://un0y14wnyj4r"]
 
 [ext_resource type="Script" uid="uid://e11lp5t3cbw8" path="res://Scripts/player.gd" id="1_p1odr"]
-[ext_resource type="PackedScene" uid="uid://b6vo1s0mgkmwt" path="res://Scenes/sewling.tscn" id="2_tx1dd"]
-[ext_resource type="PackedScene" uid="uid://bscyojs2v21h2" path="res://Scenes/sewfly.tscn" id="3_gymyn"]
+[ext_resource type="PackedScene" uid="uid://b6vo1s0mgkmwt" path="res://Scenes/Characters/sewling.tscn" id="2_tx1dd"]
+[ext_resource type="PackedScene" uid="uid://bscyojs2v21h2" path="res://Scenes/Characters/sewfly.tscn" id="3_gymyn"]
 [ext_resource type="Script" uid="uid://dsfw2hgtps7r5" path="res://Scripts/player_controller.gd" id="8_f1ek2"]
 
 [node name="Player" type="Node2D" groups=["Player"]]

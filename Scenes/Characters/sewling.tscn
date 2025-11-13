@@ -280,10 +280,10 @@ tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true, false, true]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_pu2lt"]
@@ -517,6 +517,8 @@ debug_color = Color(0, 0.5936789, 0.20585567, 0.41960785)
 
 [node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("7_6dpdm")
+damage = 15.0
+knockback_direction = Vector2(7, 19)
 metadata/_custom_type_script = "uid://bhb7ecddpslrb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
