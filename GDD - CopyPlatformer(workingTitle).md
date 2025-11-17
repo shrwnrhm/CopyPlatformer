@@ -60,10 +60,55 @@ weak
 - Special: Dash (increased speed for one short burst movement)
 
 ### Gnome
+weak
+
 ### Slime
+weak
+- Abilities: none
+- Weight: light
+- Speed: slow
+- Attack: Makes itsself Flat
+- Special: Spits infront of him (creates toxic puddle)
+- No jump
+
+### Fish
+weak
+
+### PigBear
+strong
+
+### DirtMole
+weak
+- Abilities: none
+- Weight: light
+- Speed: slow
+- Attack: Headbutt
+- Special: starts digging down (movement only left to right)
+    - While underground, release the button to jump out and attack
+- No jump
+
+### Golem
+strong
+- Abilities: none
+- Weight: heavy
+- Speed: slow
+- Attack: Swings with Hand
+- Special: Shields himself (turns heavier)
+- No jump
+
+### BigRat
+medium
+- Abilities: none
+- Weight: medium
+- Speed: fast
+- Attack: Bite
+- Special: screams/screaches infront and above (Stunns)
+- One jump
+
 ### Sewfly
 weak
 up down movement in air
+gets pushed out of water
 - Abilities: Flying
 - Weight: light
 - Speed: slow
